@@ -1,8 +1,10 @@
 const express = require ("express")
 const mongoose = require ("mongoose")
 const cors = require ("cors")
+require("dotenv").config()
 
-const dburl = "mongodb://localhost:27017/gallerydb"
+// const dburl = "mongodb://localhost:27017/gallerydb"
+const dburl = process.env.mongodburl
 
 mongoose.connect(dburl).then(() => {
     console.log("Connected to DB Successfully")
@@ -22,7 +24,7 @@ app.use("",customerrouter)
 app.use("",adminrouter)   
 app.use("",artistrouter)
 
-const port = 2032
+const port = process.env.PORT || 2032
 app.listen(port, () => {
     console.log("Server is running at port:"+port)
 })
